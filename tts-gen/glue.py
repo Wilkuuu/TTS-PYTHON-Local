@@ -2,6 +2,7 @@ import os
 import librosa
 import soundfile as sf
 import numpy as np
+import sys
 
 # Function to load audio from a file
 def load_wav(file_path):
@@ -53,7 +54,7 @@ def merge_wav_files(files_directory, output_file):
 
 # Usage
 files_directory = './audio'  # Directory containing the wav files (current folder)
-output_file = 'output.wav'  # Output file name
+output_file = sys.argv[1] + '.wav'  # Output file name
 
 # Merge all wav files in the directory and save to output.wav
 merge_wav_files(files_directory, output_file)

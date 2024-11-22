@@ -62,14 +62,13 @@ def process_text_files(text_files_dir, output_dir, tts_url='http://localhost:802
                     audio_file.write(response.content)
 
                 print(f"Processed {filename} -> {output_filename}")
-
+        run_glue_script(filename)
     print("All files processed successfully!")
-    run_glue_script()
 
-def run_glue_script():
+def run_glue_script(filename):
     try:
         # Assuming glue.py is in the same directory or provide the full path
-        subprocess.run(['python3', 'glue.py'], check=True)
+        subprocess.run(['python3', 'glue.py', os.path.splitext(filename)[0]], check=True)
         print("glue_file.py script ran successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error running glue_file.py: {e}")
