@@ -13,10 +13,19 @@ def load_wav(file_path):
 def merge_wav_files(files_directory, output_file):
     wav_files = []
     
+    print(f"Looking for wav files in directory: {files_directory}")
+    print(f"Directory exists: {os.path.exists(files_directory)}")
+    
+    if not os.path.exists(files_directory):
+        print(f"Directory {files_directory} does not exist!")
+        return
+    
     # Get all wav files in the directory that match the pattern *_iterationNumber.wav
     for file_name in os.listdir(files_directory):
         if file_name.endswith(".wav") and "_" in file_name:
             wav_files.append(file_name)
+    
+    print(f"Found {len(wav_files)} wav files: {wav_files}")
     
     # Sort files based on the iteration number at the end of the filename
     try:
@@ -53,8 +62,12 @@ def merge_wav_files(files_directory, output_file):
     print(f"Merged audio saved to {output_file}")
 
 # Usage
-files_directory = './audio'  # Directory containing the wav files (current folder)
-output_file = sys.argv[1] + '.wav'  # Output file name
+if len(sys.argv) < 2:
+    print("Usage: python glue.py <output_filename> [audio_directory]")
+    sys.exit(1)
+
+files_directory = sys.argv[2] if len(sys.argv) > 2 else './audio'  # Directory containing the wav files
+output_file = os.path.join(files_directory, sys.argv[1] + '.wav')  # Output file name in the audio directory
 
 # Merge all wav files in the directory and save to output.wav
 merge_wav_files(files_directory, output_file)
