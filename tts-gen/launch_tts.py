@@ -130,9 +130,9 @@ if __name__ == '__main__':
     parser.add_argument('--text_files_dir', type=str, default='./texts', help='Directory containing the text files')
     parser.add_argument('--output_dir', type=str, default='./audio', help='Directory where audio files will be saved')
     parser.add_argument('--tts_url', type=str, default='http://localhost:8020', help='TTS server URL')
-    parser.add_argument('--speaker_wav', type=str, default='czubowna', help='Speaker voice to use')
+    parser.add_argument('--speaker_wav', type=str, default='magMasz', help='Speaker voice to use')
     parser.add_argument('--language', type=str, default='pl', help='Language for the TTS')
-    parser.add_argument('--max_chunk_length', type=int, default=600, help='Maximum length of each text chunk in characters')
+    parser.add_argument('--max_chunk_length', type=int, default=150, help='Maximum length of each text chunk in characters')
     parser.add_argument('--overwrite', action='store_true', help='Overwrite existing files')
 
     # Parse the arguments
